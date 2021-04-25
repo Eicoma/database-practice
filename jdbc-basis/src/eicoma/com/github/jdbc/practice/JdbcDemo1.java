@@ -42,7 +42,7 @@ public class JdbcDemo1 {
             );
         }
 
-        //7.释放资源
+        //7.调用close()释放资源
         con.close();
         stat.close();
         rs.close();
