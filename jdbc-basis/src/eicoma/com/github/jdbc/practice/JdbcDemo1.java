@@ -9,6 +9,7 @@ import java.sql.Statement;
 public class JdbcDemo1 {
     public static void main(String[] args) throws Exception{
         //1.导入jar包
+        //在模块中建立libs文件夹，导入jar包
 
         //2.注册驱动
         //mysql5之后可以不用手动注册驱动
