@@ -19,4 +19,10 @@ public class StudentController {
             System.out.println(stu);
         }
     }
+
+    @Test
+    public void findById(){
+        Student stu = service.findById(2);
+        System.out.println(stu);
+    }
 }
