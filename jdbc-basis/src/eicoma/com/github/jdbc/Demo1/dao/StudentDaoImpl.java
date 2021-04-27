@@ -1,6 +1,7 @@
 package eicoma.com.github.jdbc.Demo1.dao;
 
 import eicoma.com.github.jdbc.Demo1.domain.Student;
+import eicoma.com.github.jdbc.Demo1.utils.JDBCUtils;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -17,10 +18,14 @@ public class StudentDaoImpl implements StudentDao {
         try {
 
             //1.注册驱动（这一步可省略）
-            Class.forName("com.mysql.jdbc.Driver");
+            //Class.forName("com.mysql.jdbc.Driver");
 
             //2.获取数据库连接对象
-            con = DriverManager.getConnection("jdbc:mysql://192.168.23.129:3306/db10", "root", "root1999");
+            //con = DriverManager.getConnection("jdbc:mysql://192.168.23.129:3306/db10", "root", "root1999");
+
+            //优化后：
+            // 通过工具类JDBCUtils工具类中的静态代码块和getConnection()方法注册驱动+获取数据库连接对象
+            con = JDBCUtils.getConnection();
 
             //3.获取到Sql语句执行对象
             stat = con.createStatement();
@@ -42,30 +47,8 @@ public class StudentDaoImpl implements StudentDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            }
-
-            if (stat != null) {
-                try {
-                    stat.close();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            }
-
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            }
+            //选择形参为三个的close()方法重载
+           JDBCUtils.close(con,stat,rs);
         }
 
             return list;
@@ -81,10 +64,14 @@ public class StudentDaoImpl implements StudentDao {
             try {
 
                 //1.注册驱动（这一步可省略）
-                Class.forName("com.mysql.jdbc.Driver");
+                //Class.forName("com.mysql.jdbc.Driver");
 
                 //2.获取数据库连接对象
-                con = DriverManager.getConnection("jdbc:mysql://192.168.23.129:3306/db10","root","root1999");
+                //con = DriverManager.getConnection("jdbc:mysql://192.168.23.129:3306/db10","root","root1999");
+
+                //优化后：
+                //通过JDBCUtils工具类中的静态代码块和getConction()方法来注册驱动和获取数据库连接对象
+                con = JDBCUtils.getConnection();
 
                 //3.获取到Sql语句执行对象
                 stat = con.createStatement();
@@ -109,29 +96,8 @@ public class StudentDaoImpl implements StudentDao {
                 e.printStackTrace();
             }  finally {
 
-                if (con!=null) {
-                    try {
-                        con.close();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                }
-
-                if (stat!=null) {
-                    try {
-                        stat.close();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                }
-
-                if (rs!=null) {
-                    try {
-                        rs.close();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                }
+                //选择形参为三个的close()方法重载
+                JDBCUtils.close(con,stat,rs);
             }
 
             return stu;
@@ -146,10 +112,14 @@ public class StudentDaoImpl implements StudentDao {
             try {
 
                 //1.注册驱动（这一步可省略）
-                Class.forName("com.mysql.jdbc.Driver");
+                //Class.forName("com.mysql.jdbc.Driver");
 
                 //2.获取数据库连接对象
-                con = DriverManager.getConnection("jdbc:mysql://192.168.23.129:3306/db10","root","root1999");
+                //con = DriverManager.getConnection("jdbc:mysql://192.168.23.129:3306/db10","root","root1999");
+
+                //优化后：
+                //通过工具类JDBCUtils中的静态代码块和grtConection()方法来注册驱动和获取数据库连接对象
+                con = JDBCUtils.getConnection();
 
                 //3.获取到Sql语句执行对象
                 stat = con.createStatement();
@@ -164,22 +134,8 @@ public class StudentDaoImpl implements StudentDao {
             } catch (Exception e) {
                 e.printStackTrace();
             }  finally {
-
-                if (con!=null) {
-                    try {
-                        con.close();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                }
-
-                if (stat!=null) {
-                    try {
-                        stat.close();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                }
+                //选择调用形参为两个的close()方法重载
+                JDBCUtils.close(con,stat);
             }
             return result;
         }
@@ -192,10 +148,14 @@ public class StudentDaoImpl implements StudentDao {
             try {
 
                 //1.注册驱动（这一步可省略）
-                Class.forName("com.mysql.jdbc.Driver");
+                //Class.forName("com.mysql.jdbc.Driver");
 
                 //2.获取数据库连接对象
-                con = DriverManager.getConnection("jdbc:mysql://192.168.23.129:3306/db10","root","root1999");
+                //con = DriverManager.getConnection("jdbc:mysql://192.168.23.129:3306/db10","root","root1999");
+
+                //优化后：
+                //通过工具类JDBCUtils中的静态代码块和grtConection()方法来注册驱动和获取数据库连接对象
+                con = JDBCUtils.getConnection();
 
                 //3.获取到Sql语句执行对象
                 stat = con.createStatement();
@@ -211,21 +171,8 @@ public class StudentDaoImpl implements StudentDao {
             } catch (Exception e) {
                 e.printStackTrace();
             }  finally {
-                if (con!=null) {
-                    try {
-                        con.close();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                }
-
-                if (stat!=null) {
-                    try {
-                        stat.close();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                }
+                //选择调用形参为两个的close()方法重载
+                JDBCUtils.close(con,stat);
             }
 
             return result;
@@ -239,10 +186,14 @@ public class StudentDaoImpl implements StudentDao {
             try {
 
                 //1.注册驱动（这一步可省略）
-                Class.forName("com.mysql.jdbc.Driver");
+                //Class.forName("com.mysql.jdbc.Driver");
 
                 //2.获取数据库连接对象
-                con = DriverManager.getConnection("jdbc:mysql://192.168.23.129:3306/db10","root","root1999");
+                //con = DriverManager.getConnection("jdbc:mysql://192.168.23.129:3306/db10","root","root1999");
+
+                //优化后：
+                //通过工具类JDBCUtils中的静态代码块和grtConection()方法来注册驱动和获取数据库连接对象
+                con = JDBCUtils.getConnection();
 
                 //3.获取到Sql语句执行对象
                 stat = con.createStatement();
@@ -254,21 +205,8 @@ public class StudentDaoImpl implements StudentDao {
             } catch (Exception e) {
                 e.printStackTrace();
             }  finally {
-                if (con!=null) {
-                    try {
-                        con.close();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                }
-
-                if (stat!=null) {
-                    try {
-                        stat.close();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                }
+                //选择调用形参为两个的close()方法重载
+                JDBCUtils.close(con,stat);
             }
 
             return result;

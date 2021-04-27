@@ -16,6 +16,7 @@ public class JDBCUtils {
     private static String password;
     private static Connection con;
 
+    //在调用JDBCUtils类的方法的同时，该类的Static代码块会随着类的加载一同执行
     static{
         try {
             InputStream is = JDBCUtils.class.getClassLoader().getResourceAsStream("config.properties");
@@ -41,6 +42,7 @@ public class JDBCUtils {
         }
     }
 
+    //获取数据库连接，返回一个数据库连接对象
     public static Connection getConnection(){
         try {
             con = DriverManager.getConnection(url,username,password);
@@ -50,6 +52,8 @@ public class JDBCUtils {
         return con;
     }
 
+    //释放资源的方法
+    //定义了两个close()方法重载
     public static void close(Connection con, Statement stat, ResultSet rs){
         if (con!=null){
             try {
@@ -93,6 +97,5 @@ public class JDBCUtils {
             }
         }
     }
-
 
 }
