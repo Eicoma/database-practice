@@ -3,6 +3,7 @@ package eicoma.com.github.jdbc.Demo1.dao;
 import eicoma.com.github.jdbc.Demo1.domain.Student;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -139,8 +140,48 @@ public class StudentDaoImpl implements StudentDao {
 
         @Override
         public int Insert (Student stu){
+            Connection con = null;
+            Statement stat = null;
+            int result = 0;
+            try {
 
-            return 0;
+                //1.注册驱动（这一步可省略）
+                Class.forName("com.mysql.jdbc.Driver");
+
+                //2.获取数据库连接对象
+                con = DriverManager.getConnection("jdbc:mysql://192.168.23.129:3306/db10","root","root1999");
+
+                //3.获取到Sql语句执行对象
+                stat = con.createStatement();
+
+                //4.执行Sql语句，并将其赋给ResultSet变量
+                Date date = stu.getBirthday();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String birthday = sdf.format(date);
+                String sql = "INSERT INTO student VALUES ('"+ stu.getSid()+"','"+stu.getName()+"','"+stu.getAge()+"','"+birthday+"')";
+                result = stat.executeUpdate(sql);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }  finally {
+
+                if (con!=null) {
+                    try {
+                        con.close();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }
+
+                if (stat!=null) {
+                    try {
+                        stat.close();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }
+            }
+            return result;
         }
 
         @Override

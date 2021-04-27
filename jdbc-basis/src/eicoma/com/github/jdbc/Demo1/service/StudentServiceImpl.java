@@ -22,7 +22,7 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public int Insert(Student stu) {
-        return 0;
+        return dao.Insert(stu);
     }
 
     @Override
