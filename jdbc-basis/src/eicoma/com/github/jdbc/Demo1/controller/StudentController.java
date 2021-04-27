@@ -30,7 +30,7 @@ public class StudentController {
     @Test
     public void Insert(){
         Date date = new Date();
-        Student stu = new Student(5,"魏七",27,date);
+        Student stu = new Student(8,"王老五",27,date);
         int result = service.Insert(stu);
         if (result!=0){
             System.out.println("信息添加成功");
@@ -41,8 +41,8 @@ public class StudentController {
 
     @Test
     public void Update(){
-        Student stu = service.findById(5);
-        stu.setName("周八");
+        Student stu = service.findById(4);
+        stu.setName("周发发");
 
         int result = service.Update(stu);
         if (result != 0){
@@ -54,7 +54,7 @@ public class StudentController {
 
     @Test
     public void Delete(){
-        int result = service.Delete(5);
+        int result = service.Delete(7);
         if(result != 0){
             System.out.println("信息删除成功");
         }else{
