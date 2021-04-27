@@ -19,7 +19,7 @@ public class StudentDaoImpl implements StudentDao{
             Class.forName("com.mysql.jdbc.Driver");
 
             //2.获取数据库连接对象
-            con = DriverManager.getConnection("192.168.23.129:3306/db10","root","root1999");
+            con = DriverManager.getConnection("jdbc:mysql://192.168.23.129:3306/db10","root","root1999");
 
             //3.获取到Sql语句执行对象
             stat = con.createStatement();
@@ -27,14 +27,17 @@ public class StudentDaoImpl implements StudentDao{
             //4.执行Sql语句，并将其赋给ResultSet变量
             String sql = "SELECT * FROM student";
             rs = stat.executeQuery(sql);
-            Integer sid = rs.getInt("sid");
-            String name = rs.getString("name");
-            Integer age = rs.getInt("age");
-            Date birthday = rs.getDate("birthday");
 
-            Student stu = new Student(sid,name,age,birthday);
+            while (rs.next()) {
+                Integer sid = rs.getInt("sid");
+                String name = rs.getString("name");
+                Integer age = rs.getInt("age");
+                Date birthday = rs.getDate("birthday");
 
-            list.add(stu);
+                Student stu = new Student(sid,name,age,birthday);
+
+                list.add(stu);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }  finally {
