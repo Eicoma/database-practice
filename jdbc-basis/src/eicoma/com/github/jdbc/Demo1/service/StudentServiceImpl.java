@@ -27,11 +27,11 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public int Update(Student stu) {
-        return 0;
+        return dao.Update(stu);
     }
 
     @Override
     public int Delete(Integer id) {
-        return 0;
+        return dao.Delete(id);
     }
 }

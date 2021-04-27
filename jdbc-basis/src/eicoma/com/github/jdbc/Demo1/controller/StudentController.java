@@ -38,4 +38,27 @@ public class StudentController {
             System.out.println("信息添加失败");
         }
     }
+
+    @Test
+    public void Update(){
+        Student stu = service.findById(5);
+        stu.setName("周八");
+
+        int result = service.Update(stu);
+        if (result != 0){
+            System.out.println("信息修改成功");
+        }else{
+            System.out.println("信息修改失败");
+        }
+    }
+
+    @Test
+    public void Delete(){
+        int result = service.Delete(5);
+        if(result != 0){
+            System.out.println("信息删除成功");
+        }else{
+            System.out.println("信息删除失败");
+        }
+    }
 }

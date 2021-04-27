@@ -186,11 +186,91 @@ public class StudentDaoImpl implements StudentDao {
 
         @Override
         public int Update (Student stu){
-            return 0;
+            Connection con = null;
+            Statement stat = null;
+            int result = 0;
+            try {
+
+                //1.注册驱动（这一步可省略）
+                Class.forName("com.mysql.jdbc.Driver");
+
+                //2.获取数据库连接对象
+                con = DriverManager.getConnection("jdbc:mysql://192.168.23.129:3306/db10","root","root1999");
+
+                //3.获取到Sql语句执行对象
+                stat = con.createStatement();
+
+                Date date = stu.getBirthday();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String birthday = sdf.format(date);
+
+                //4.执行Sql语句，并将其赋给ResultSet变量
+                String sql ="UPDATE student SET sid='"+stu.getSid()+"',name='"+stu.getName()+"',age='"+stu.getAge()+"',birthday='"+birthday+"' WHERE sid='"+stu.getSid()+"'";
+                result = stat.executeUpdate(sql);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }  finally {
+                if (con!=null) {
+                    try {
+                        con.close();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }
+
+                if (stat!=null) {
+                    try {
+                        stat.close();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }
+            }
+
+            return result;
         }
 
         @Override
         public int Delete (Integer id){
-            return 0;
+            Connection con = null;
+            Statement stat = null;
+            int result = 0;
+            try {
+
+                //1.注册驱动（这一步可省略）
+                Class.forName("com.mysql.jdbc.Driver");
+
+                //2.获取数据库连接对象
+                con = DriverManager.getConnection("jdbc:mysql://192.168.23.129:3306/db10","root","root1999");
+
+                //3.获取到Sql语句执行对象
+                stat = con.createStatement();
+
+                //4.执行Sql语句，并将其赋给ResultSet变量
+                String sql ="DELETE FROM student WHERE sid=' "+id+" ' ";
+                result = stat.executeUpdate(sql);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }  finally {
+                if (con!=null) {
+                    try {
+                        con.close();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }
+
+                if (stat!=null) {
+                    try {
+                        stat.close();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }
+            }
+
+            return result;
         }
     }
