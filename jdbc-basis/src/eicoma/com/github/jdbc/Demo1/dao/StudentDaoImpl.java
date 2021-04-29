@@ -89,7 +89,7 @@ public class StudentDaoImpl implements StudentDao {
                 pstm = conn.prepareStatement("SELECT * FROM student WHERE sid=?");
                 pstm.setInt(1,id);
 
-                //4.执行Sql语句，并将其赋给ResultSet变量
+                //4.执行Sql语句，并将其赋给ResultSet变量。
                 //String sql = "SELECT * FROM student WHERE sid='"+id+"'";
                 //rs = stat.executeQuery(sql);
                 rs = pstm.executeQuery();
