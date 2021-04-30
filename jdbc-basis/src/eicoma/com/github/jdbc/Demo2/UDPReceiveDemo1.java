@@ -8,7 +8,7 @@ import java.net.SocketException;
 
 public class UDPReceiveDemo1 {
     public static void main(String[] args) throws IOException {
-        //创建接收端的DatagramSocket对象
+        //创建接收端的Socket对象
         DatagramSocket ds = new DatagramSocket(10086);
         //通过死循环来接收数据
         while(true){
