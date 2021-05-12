@@ -3,8 +3,16 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-    
-<!--Servlet配置-->
+<!--Servlet配置1-->
+    <servlet>
+        <servlet-name>servletDemo1</servlet-name>
+        <servlet-class>eicoma.com.github.servlet.practice.ServletDemo1</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>servletDemo1</servlet-name>
+        <url-pattern>/servletDemo1</url-pattern>
+    </servlet-mapping>
+<!--Servlet配置2-->
     <servlet>
         <servlet-name>servletDemo2</servlet-name>
         <servlet-class>eicoma.com.github.servlet.practice.ServletDemo2</servlet-class>
