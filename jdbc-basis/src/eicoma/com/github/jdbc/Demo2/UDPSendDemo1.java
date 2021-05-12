@@ -26,7 +26,7 @@ public class UDPSendDemo1 {
             //创建数据，并把数据打包
             //把从键盘录入的字符串转化为字节数组
             byte[] byteArray = s.getBytes();
-            DatagramPacket dp = new DatagramPacket(byteArray,byteArray.length, InetAddress.getByName("DESKTOP-8SR48GT"),10086);;
+            DatagramPacket dp = new DatagramPacket(byteArray,byteArray.length, InetAddress.getByName("DESKTOP-8SR48GT"),10086);
             //通过DatagramSocket对象发送数据
             ds.send(dp);
         }
