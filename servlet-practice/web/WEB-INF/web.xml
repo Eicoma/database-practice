@@ -32,4 +32,24 @@
         <servlet-name>servletDemo3</servlet-name>
         <url-pattern>/servletDemo3</url-pattern>
     </servlet-mapping>
+
+<!--Servlet  /开头+通配符的方式-->
+<!--    <servlet>-->
+<!--        <servlet-name>servletDemo4</servlet-name>-->
+<!--        <servlet-class>eicoma.com.github.servlet.practice.ServletDemo4</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>servletDemo4</servlet-name>-->
+<!--        <url-pattern>/servlet/*</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+<!--通配符+固定格式结尾的方式-->
+    <servlet>
+        <servlet-name>servletDemo4</servlet-name>
+        <servlet-class>eicoma.com.github.servlet.practice.ServletDemo4</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>servletDemo4</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
 </web-app>
