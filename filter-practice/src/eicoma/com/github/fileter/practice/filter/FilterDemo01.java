@@ -4,6 +4,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
+//通过注解对过滤器进行配置
+//  “/*”代表对该项目下所有的Servlet都起作用，也可单独指定某一个Servlet
 @WebFilter("/*")
 public class FilterDemo01 implements Filter {
     @Override
